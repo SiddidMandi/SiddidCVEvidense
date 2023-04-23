@@ -1,0 +1,102 @@
+set ignorecase true
+set noreverse
+set info size
+
+#image preview
+set previewer ~/.config/lf/preview
+set preview true
+set cleaner ~/.config/lf/cleaner
+set ratios 1:2:3
+
+# Bindings
+map o
+map cd
+map D
+map c
+map a
+map s
+map sa
+map sc
+map sn
+map t
+map f
+map u
+map M
+map I
+map i
+#map ; this was fucking it up
+# Basic Functions
+cmd touch ${{
+printf "File Name: "
+read -r ans
+touch "$ans"
+}}
+
+cmd mkdir ${{
+  printf "Directory Name: "
+  read -r ans
+  mkdir "$ans"
+}}
+
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *.rar) unrar "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+cmd diskUsage ${{
+clear
+du -sh "$f" | awk '{print $1}'
+read -n 1
+}}
+
+cmd open ${{
+case "$f" in
+*.xopp) nohup xournalpp "$f"  &> /dev/null & ;;
+*.odt|*.docx) nohup libreoffice "$f" &> /dev/null & ;;
+*.pptx) nohup libreoffice "$f" &> /dev/null & ;;
+*.pdf) nohup zathura "$f" &> /dev/null & ;;
+*.ipynb) nohup jupyter notebook "$f" &> /dev/null & ;;
+*.png|*.jpg|*.*.heic) nohup feh "$f" &> /dev/null & ;;
+*.mp4|*.avi|*.mkv) nohup vlc "$f" &> /dev/null & ;;
+#*) nohup alacritty -e nvim "$f" &> /dev/null & ;;
+esac
+}}
+
+cmd openNew ${{
+nohup alacritty -e nvim "$f" &> /dev/null & ;;
+}}
+
+cmd setbg ${{
+feh --no-fehbg --bg-fill "$f"
+}}
+
+map cd mkdir 
+map cf touch
+map id diskUsage
+map D delete
+map au unarchive
+map o open
+map Ox !nohup xournalpp "$f" &> /dev/null
+map On !nohup nemo "$f" &> /dev/null
+map ON !nohup alacritty -e nvim "$f" &> /dev/null
+map st :{{ set sortby atime; set reverse; }}
+map sn :{{ set sortby natural; set info; set noreverse; }}
+map t :{{ filter ".tex"; set info; }}
+map f :filter ""
+map A :rename "$f"
+map b setbg
+map um :mark-remove
+
+#Global bookmarks
+map Md cd ~/Desktop
+map MD :{{cd ~/Downloads; set sortby atime; set reverse; }}
+map My cd ~/Desktop/ytScripts;
+map MH cd ~/
+map Mm cd ~/Movies
+map MM cd /mnt

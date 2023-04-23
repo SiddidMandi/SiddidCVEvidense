@@ -1,0 +1,55 @@
+install brew - website shell command
+follow ending instructions for brew shell install
+\and add it to path
+I think you need to restart here
+
+install neovim via brew
+
+---Nodejs install
+install nodejs via apt
+sudo apt install nodejs
+should give >14.14
+if not use nvm to update
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
+https://phoenixnap.com/kb/update-node-js-version
+command and source
+nvm ls
+nvm ls-remote
+nvm install [version number]
+
+-configuring
+we will use vim plug, it is possible to do it natively but I'll just go with that for this video
+We will also be using init.lua, and a broken up stucture to improve organisation
+Make these directory structures
+-manual management
+mkdir ~/.config/nvim/pack/plugins/opt and start
+'plugins' can be called anything start is eager loading
+run :helptags and path it to DIRECToRY of txt file
+
+make directory setup in lua
+require('setup/airline') for airline configurations use format for other plugin configs
+
+coc-snippets have to manually be installed with CocInstall, it is a snippet engine that can load snippets
+it will be in a different directory in ~/.config/coc
+you can also manually download ultisnips
+make one for cocConfig.lua
+require('setup/cocConfig') --Konsole terminal is ass and doesn't let you shift tab, use st
+
+maybe don't use coc-snippets to load snippets, consider alternatives. other than that it is virtually set up
+remember coc_snippet_next function, let g.coc_snippet_next = '<tab>', this lets you skip to next trigger also
+
+install nerdfont and past .otf or .ttf into .loca/shared/fonts (mkdir)
+go to terminal emulator preferences and change font there,
+
+THINGS TO DO---
+write shell script for installing and updating nodejs
+upload lua config to github
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+set from = "siddid.mandi@gmail.com"
+set realname = "Sid Did"
+set imap_user = "siddid.mandi@gmail.com"
+set imap_pass = "XXXXXXXXXXXXX"
+#qlghhiamudotbrdf
+##REMOTE GMAIL FOLDERS
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed ="+[Google Mail]/Drafts"
+set trash = "+[Google Mail]/Trash"
+
+##SMTP Settings to sent email
+set smtp_url="smtps://siddid.mandi%40gmail.com:gcltqaqltgczflkv@smtp.gmail.com:465"
+#set smtp_url = "smtp://siddid.mandi@gmail.com.ex@smtp.gmail.com:587/"
+#set smtp_pass = "XXXXXXXXXXXXXXXXXXX"
+
+##LOCAL FOLDERS FOR CACHED HEADERS AND CERTIFICATES
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+
+#set certificate_file =~/.mutt/certificates
+
+##SECURING
+set move = no  #Stop asking to "move read messages to mbox"!
+set imap_keepalive = 900
+
+##Sort by newest conversation first.
+set sort = reverse-threads
+set sort_aux = last-date-received
+
+##Set editor to create new email
+set editor='nvim'
+
+#luke smith video settings
+#set record = "+Sent"
+set trash = "+Trash"
+set postponed = "+Drafts"
+
+#mailboxes =INBOX =Sent =Trash =Drafts =Junk =Other  #Sent gone
+mailboxes =INBOX =Trash =Drafts =Junk =Other
+
+source color.muttrc
